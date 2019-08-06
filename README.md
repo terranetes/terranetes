@@ -78,12 +78,23 @@ variable "k8s" {
 This can be used with above object to create a 2 node cluster based on the OpenStack Provider (LBaaSv2 required, flip `loadbalancer.enable` to `false` if unavailable)
 
 ```
-module "openstack" {
-  source = "./providers/openstack"
+module "k8s" {
+  source = "./core/kubernetes"
   k8s    = "${var.k8s}"
 }
 
+module "openstack" {
+  source   = "./providers/openstack"
+  k8s      = "${module.k8s.k8s}"
+  ignition = "${module.k8s.ignition}"
+  admin    = "${module.k8s.admin}"
+}
+
+output "k8s" {
+  value = "${module.openstack.k8s}"
+}
+
 output "admin" {
-  value = "${module.openstack.admin}"
+  value = "${jsonencode(module.openstack.admin)}"
 }
 ```
