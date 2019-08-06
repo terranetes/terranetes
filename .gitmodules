@@ -1,0 +1,9 @@
+[submodule "providers"]
+	path = providers
+	url = ../providers
+[submodule "core"]
+	path = core
+	url = ../core
+[submodule "extras"]
+	path = extras
+	url = ../extras
