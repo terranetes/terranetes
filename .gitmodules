@@ -7,3 +7,6 @@
 [submodule "extras"]
 	path = extras
 	url = ../extras
+[submodule "docs"]
+	path = docs
+	url = ../terranetes.github.io
